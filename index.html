@@ -1,0 +1,68 @@
+<html>
+<!-- See also: http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html -->
+<head>
+    <title>Flowchart to Post-Rock &amp; Friends</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
+        integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+        crossorigin=""/>
+    <style>
+        html, body {
+            min-height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        #image-map {
+            width: 100%;
+            height: 100%;
+        }
+        .leaflet-container {
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
+        integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
+        crossorigin=""></script>
+
+    <script>
+        // Using leaflet.js to pan and zoom a big image.
+        // See also: http://kempe.net/blog/2014/06/14/leaflet-pan-zoom-image.html
+
+        // create the slippy map
+        var map = L.map('image-map', {
+            minZoom: 2,
+            maxZoom: 4,
+            center: [0, 0],
+            zoom: 2,
+            crs: L.CRS.Simple
+        });
+
+        // dimensions of the image
+        var w = 3431,
+            h = 2010,
+            url = './dist/post-rock-and-friends.svg';
+
+        // calculate the edges of the image, in coordinate space
+        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+
+        // add the image overlay, 
+        // so that it covers the entire map
+        L.imageOverlay(url, bounds).addTo(map);
+
+        // tell leaflet that the map is exactly as big as the image
+        map.setMaxBounds(bounds);
+
+        map.attributionControl
+            .setPrefix('')
+            .addAttribution('See source and more on <a href="https://github.com/A----/postrock-and-friends">GitHub</a>')
+            .addAttribution('viewer uses <a href="http://leafletjs.com/">Leaflet</a>');
+    </script>
+
+</body>
+</html>

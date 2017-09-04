@@ -6,6 +6,8 @@ Credit where credit's due:
 * Initial flowchart by redditor [/u/Philitian](https://www.reddit.com/user/Philitian)
 * Original [post](https://www.reddit.com/r/postrock/comments/6ggrhk/i_made_a_flowchart_for_postrock_and_neighboring/) & [chart](http://i.imgur.com/NIGAaTA.jpg).
 
+Check [here](https://a----.github.io/postrock-and-friends/) for a viewer, you can also download SVG and rasterized version from the `dist/` folder.
+
 ## Contribution
 
 You think something's missing? Create an issue! Better, fork the repo and push a PR.
